@@ -1,3 +1,5 @@
+// script.js
+
 // Función para permitir el drop de tareas en las columnas
 function allowDrop(event) {
     event.preventDefault();
@@ -29,7 +31,7 @@ function closeForm(formId) {
     document.getElementById(formId).style.display = "none";
 }
 
-// Función para agregar una nueva tarea
+// En la función addTask(column) dentro de index.php
 function addTask(column) {
     var taskName = document.forms[0].elements["taskName"].value;
     if (taskName.trim() === "") {
@@ -44,7 +46,28 @@ function addTask(column) {
     taskElement.className = "task";
     taskElement.draggable = true;
     taskElement.setAttribute("ondragstart", "drag(event)");
-    taskElement.innerHTML = taskName;
+
+    // Contenedor para la tarea y botones
+    var taskContent = document.createElement("div");
+    taskContent.className = "task-content";
+    taskContent.innerHTML = taskName;
+
+    // Botón para eliminar tarea
+    var deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Eliminar";
+    deleteButton.onclick = function() {
+        eliminarTarea(taskId, column);
+        tasksContainer.removeChild(taskElement);
+    };
+
+    // Botón para modificar tarea (aquí puedes implementar una función similar para modificar)
+
+    // Agregar botones al contenedor de la tarea
+    taskContent.appendChild(deleteButton);
+    // Agregar otros botones según sea necesario
+
+    // Agregar el contenido de la tarea al elemento de tarea
+    taskElement.appendChild(taskContent);
 
     tasksContainer.appendChild(taskElement);
 
@@ -55,4 +78,38 @@ function addTask(column) {
     // Aquí podrías hacer una llamada AJAX para guardar la tarea en la base de datos
 
     return false; // Evita que se recargue la página
+}
+
+
+// En script.js
+function eliminarTarea(taskId, column) {
+    // Aquí puedes implementar una llamada AJAX para eliminar la tarea del backend
+    fetch('eliminar_tarea.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ taskId, column }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Eliminar visualmente la tarea del DOM
+        var taskElement = document.getElementById(taskId);
+        taskElement.parentNode.removeChild(taskElement);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+
+// Función para modificar una tarea (ejemplo básico, puedes implementar según tu necesidad)
+function modificarTarea(taskId) {
+    var newName = prompt("Ingrese el nuevo nombre de la tarea:");
+    if (newName !== null && newName.trim() !== "") {
+        var taskElement = document.getElementById(taskId);
+        taskElement.querySelector('span').textContent = newName;
+
+        // Aquí podrías hacer una llamada AJAX para modificar la tarea en la base de datos
+    }
 }

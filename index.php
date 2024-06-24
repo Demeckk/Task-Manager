@@ -18,10 +18,11 @@ function mostrarTareas($column) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Aplicación de Tareas</title>
+    <title>Task Manager</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+    <h1>Gestor de tareas online</h1>
     <div class="container">
         <div class="column" id="todo">
             <h2>Por hacer</h2>
