@@ -13,14 +13,14 @@ Facilita la actualización de información de tareas existentes, como su descrip
 - *Eliminar Tareas:*
 Posibilidad de eliminar tareas que ya no son relevantes o necesarias.
 
-*Mover Tareas entre Tablas:*
+- *Mover Tareas entre Tablas:*
 Permite cambiar el estado de una tarea entre las tablas de "Tareas por Hacer", "Tareas en Progreso" y "Tareas Terminadas".
 ## Entidades
 El sistema se estructura en torno a las siguientes entidades principales:
 
 - *Tarea:* Representa una actividad específica que debe ser completada dentro del proyecto.
 
-*Tablas de Tareas:* Agrupaciones visuales de tareas organizadas por estado (por hacer, en progreso, terminadas).
+- *Tablas de Tareas:* Agrupaciones visuales de tareas organizadas por estado (por hacer, en progreso, terminadas).
 ## Ventajas
 - *Organización Mejorada:* Proporciona una estructura clara para organizar y priorizar tareas según su estado.
 
