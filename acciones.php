@@ -34,7 +34,7 @@ function moverTarea($taskId, $oldColumn, $newColumn) {
     $_SESSION[$newColumn] = $newTasks;
 }
 
-// Función para eliminar una tarea de una columna
+// En acciones.php
 function eliminarTarea($taskId, $column) {
     $tasks = obtenerTareas($column);
 
